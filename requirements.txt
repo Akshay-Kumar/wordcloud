@@ -27,3 +27,4 @@ tqdm==4.48.0
 urllib3==1.25.10
 Werkzeug==1.0.1
 wordcloud==1.7.0
+gunicorn==19.9.0
