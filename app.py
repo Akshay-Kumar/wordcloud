@@ -4,6 +4,7 @@ import boto3
 import configparser
 import os
 import nltk
+import numpy as np
 from wordcloud import WordCloud
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -73,10 +74,17 @@ def create_word_cloud():
         if word[0].isupper():
             filtered_entities.append(word)
 
+    # Generate circular cloud
+    x, y = np.ogrid[:300, :300]
+
+    mask = (x - 150) ** 2 + (y - 150) ** 2 > 130 ** 2
+    mask = 255 * mask.astype(int)
+
     # Generate a word cloud image
     wordcloud = WordCloud(min_font_size=10,
                           width=800,
-                          height=800
+                          height=800,
+                          repeat=True, mask=mask
                           )
     wordcloud.generate(" ".join(filtered_entities))
     img = BytesIO()
