@@ -74,9 +74,9 @@ def create_word_cloud():
             filtered_entities.append(word)
 
     # Generate a word cloud image
-    wordcloud = WordCloud(max_font_size=60,
-                          width=500,
-                          height=350
+    wordcloud = WordCloud(min_font_size=10,
+                          width=800,
+                          height=800
                           )
     wordcloud.generate(" ".join(filtered_entities))
     img = BytesIO()
